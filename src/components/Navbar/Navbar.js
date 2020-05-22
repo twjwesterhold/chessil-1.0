@@ -16,14 +16,19 @@ const NavbarContainer = styled.div`
 	align-items: center;
 	justify-content: flex-start;
 	horizontal-align: center;
-	height: 30px;
-	width: 200px;
+	height: 60px;
+	width: 250px;
 	background-color: aliceblue;
-	padding: 15px;
 `;
 
 const Navlink = styled(Link)`
-	margin-right: 10px;
+	margin-right: 25px;
+	margin-left: 25px;
+	text-decoration: none;
+	activeStyle={{
+		fontWeight: bold;
+		color: red;
+	}}
 `;
 
 export default Navbar;

@@ -16,7 +16,7 @@ const App = () => {
   return (
     <Router>
       <Navbar/>
-      <div>
+      <BodyContent>
         <Switch>
           <Route path="/board">
             <Board squares={DEFAULT_BOARD}/>
@@ -25,10 +25,14 @@ const App = () => {
             <Home/>
           </Route>
         </Switch>
-      </div>
+      </BodyContent>
     </Router>
   );
 };
+
+const BodyContent = styled.div`
+  padding: 20px;
+`;
 
 const isValidFen = (fen) => {
   // fen must be a string

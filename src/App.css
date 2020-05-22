@@ -1,13 +1,3 @@
-body {
-  padding: 35px;
-}
-
-button {
-  width: 70px;
-  height: 70px;
-  font-size: 20px;
-}
-
 span.thick {
   border-color: black;
   border-width: 10px;
