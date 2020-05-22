@@ -12,14 +12,18 @@ import Navbar from "./components/Navbar";
 import Board from "./components/Board";
 import Home from "./components/Home";
 
+const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+const EMPTY_BOARD = "8/8/8/8/8/8/8/8";
+
 const App = () => {
+  var defBoard = fenToObject(START_FEN);
   return (
     <Router>
       <Navbar/>
       <BodyContent>
         <Switch>
           <Route path="/board">
-            <Board squares={DEFAULT_BOARD}/>
+            <Board squares={defBoard}/>
           </Route>
           <Route path="/">
             <Home/>
@@ -31,7 +35,7 @@ const App = () => {
 };
 
 const BodyContent = styled.div`
-  padding: 20px;
+  padding: 30px;
 `;
 
 const isValidFen = (fen) => {
@@ -42,7 +46,7 @@ const isValidFen = (fen) => {
 
   // cut off move and castling data
   var fenTest = fen.split(' ', 1)[0];
-  // expand whitespace
+  // expand empty squares
   fenTest = expandFenEmptySquares(fenTest);
 
   // separate into chunks
@@ -53,17 +57,20 @@ const isValidFen = (fen) => {
     return false;
   }
 
-  for (var i = 0; i <= 8; i--) {
+  // check each row contains only valid FEN characters
+  for (var i = 0; i < 8; i++) {
     if (ranks[i].length !== 8 ||
         ranks[i].search(/[^kqrnbp1]/i) !== -1) {
       return false;
     }
   }
 
+  // will be valid here, ignoring move and castling data at this point in development
   return true;
 };
 
 const expandFenEmptySquares = (fen) => {
+  // replace multiple empty squares with an equivalent number of ones
   return fen.replace(/2/g, '11')
     .replace(/3/g, '111')
     .replace(/4/g, '1111')
@@ -73,46 +80,29 @@ const expandFenEmptySquares = (fen) => {
     .replace(/8/g, '11111111')
 };
 
-const DEFAULT_BOARD = [
-  {square: 'a8', piece: "rook-black", color: "whiteS"}, {square: 'b8', piece: "knight-black", color: "blackS"},
-  {square: 'c8', piece: "bishop-black", color: "whiteS"}, {square: 'd8', piece: "queen-black", color: "blackS"},
-  {square: 'e8', piece: "king-black", color: "whiteS"}, {square: 'f8', piece: "bishop-black", color: "blackS"},
-  {square: 'g8', piece: "knight-black", color: "whiteS"}, {square: 'h8', piece: "rook-black", color: "blackS"}, 
+const fenToObject = (fen) => {
+  if (!isValidFen(fen)) {
+    return false;
+  }
 
-  {square: 'a7', piece: "pawn-black", color: "blackS"}, {square: 'b7', piece: "pawn-black", color: "whiteS"},
-  {square: 'c7', piece: "pawn-black", color: "blackS"}, {square: 'd7', piece: "pawn-black", color: "whiteS"},
-  {square: 'e7', piece: "pawn-black", color: "blackS"}, {square: 'f7', piece: "pawn-black", color: "whiteS"},
-  {square: 'g7', piece: "pawn-black", color: "blackS"}, {square: 'h7', piece: "pawn-black", color: "whiteS"},
+  var fenTemp = fen.split(' ', 1)[0];
+  fenTemp = expandFenEmptySquares(fenTemp);
 
-  {square: 'a6', piece: " ", color: "whiteS"}, {square: 'b6', piece: " ", color: "blackS"},
-  {square: 'c6', piece: " ", color: "whiteS"}, {square: 'd6', piece: " ", color: "blackS"},
-  {square: 'e6', piece: " ", color: "whiteS"}, {square: 'f6', piece: " ", color: "blackS"},
-  {square: 'g6', piece: " ", color: "whiteS"}, {square: 'h6', piece: " ", color: "blackS"},
+  var rows = fenTemp.split('/');
+  var position = [];
 
-  {square: 'a5', piece: " ", color: "blackS"}, {square: 'b5', piece: " ", color: "whiteS"},
-  {square: 'c5', piece: " ", color: "blackS"}, {square: 'd5', piece: " ", color: "whiteS"},
-  {square: 'e5', piece: " ", color: "blackS"}, {square: 'f5', piece: " ", color: "whiteS"},
-  {square: 'g5', piece: " ", color: "blackS"}, {square: 'h5', piece: " ", color: "whiteS"},
+  for (var i = 0; i < 8; i++) {
+    for (var j = 0; j < 8; j++) {
+      position.push({rank: "", file: "", piece: "", squareColor: ""});
+      var curr = j + 8*i;
+      position[curr].rank = i;
+      position[curr].file = j;
+      position[curr].piece = (rows[i].charAt(j) !== '1') ? rows[i].charAt(j) : ' ';
+      position[curr].squareColor = ((i+j)%2 === 0) ? "whiteS" : "blackS";
+    }
+  }
 
-  {square: 'a4', piece: " ", color: "whiteS"}, {square: 'b4', piece: " ", color: "blackS"},
-  {square: 'c4', piece: " ", color: "whiteS"}, {square: 'd4', piece: " ", color: "blackS"},
-  {square: 'e4', piece: " ", color: "whiteS"}, {square: 'f4', piece: " ", color: "blackS"},
-  {square: 'g4', piece: " ", color: "whiteS"}, {square: 'h4', piece: " ", color: "blackS"},
-
-  {square: 'a3', piece: " ", color: "blackS"}, {square: 'b3', piece: " ", color: "whiteS"},
-  {square: 'c3', piece: " ", color: "blackS"}, {square: 'd3', piece: " ", color: "whiteS"},
-  {square: 'e3', piece: " ", color: "blackS"}, {square: 'f3', piece: " ", color: "whiteS"},
-  {square: 'g3', piece: " ", color: "blackS"}, {square: 'h3', piece: " ", color: "whiteS"},
-
-  {square: 'a2', piece: "pawn-white", color: "whiteS"}, {square: 'b2', piece: "pawn-white", color: "blackS"},
-  {square: 'c2', piece: "pawn-white", color: "whiteS"}, {square: 'd2', piece: "pawn-white", color: "blackS"},
-  {square: 'e2', piece: "pawn-white", color: "whiteS"}, {square: 'f2', piece: "pawn-white", color: "blackS"},
-  {square: 'g2', piece: "pawn-white", color: "whiteS"}, {square: 'h2', piece: "pawn-white", color: "blackS"},
-
-  {square: 'a1', piece: "rook-white", color: "blackS"}, {square: 'b1', piece: "knight-white", color: "whiteS"},
-  {square: 'c1', piece: "bishop-white", color: "blackS"}, {square: 'd1', piece: "queen-white", color: "whiteS"},
-  {square: 'e1', piece: "king-white", color: "blackS"}, {square: 'f1', piece: "bishop-white", color: "whiteS"},
-  {square: 'g1', piece: "knight-white", color: "blackS"}, {square: 'h1', piece: "rook-white", color: "whiteS"}
-];
+  return position;
+};
 
 export default App;

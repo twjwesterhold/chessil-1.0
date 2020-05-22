@@ -8,22 +8,22 @@ const Board = (props) => {
   var boardArray = props.squares;
 
   for (var i = 0; i <= 7; i++) {
-    cols = [];
     for (var j = 0; j <=7; j++) {
       var thisSquare = boardArray[j + 8*i]
       cols.push(
         <Square
-          color={thisSquare.color}
+          color={thisSquare.squareColor}
           piece={thisSquare.piece}
         />
       );
     }
     rows.push(<div>{cols}</div>);
+    cols = [];
   }
   return (
-    <span class="thick">
+    <div>
       {rows}
-    </span>
+    </div>
   );
 };
 

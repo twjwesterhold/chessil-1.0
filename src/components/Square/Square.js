@@ -15,6 +15,7 @@ const ChessSquare = styled.button`
 	width: 70px;
 	height: 70px;
   	font-size: 20px;
+  	padding: 24.5px;
 `;
 
 export default Square;

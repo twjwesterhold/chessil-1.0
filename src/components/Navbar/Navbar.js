@@ -17,18 +17,18 @@ const NavbarContainer = styled.div`
 	justify-content: flex-start;
 	horizontal-align: center;
 	height: 60px;
-	width: 250px;
-	background-color: aliceblue;
+	width: true;
+	background-color: #003366;
 `;
 
 const Navlink = styled(Link)`
-	margin-right: 25px;
-	margin-left: 25px;
+	margin-left: 75px;
 	text-decoration: none;
-	activeStyle={{
-		fontWeight: bold;
-		color: red;
-	}}
+	color: white;
+	activeStyle {
+		font-weight: bold;
+		color: blue;
+	}
 `;
 
 export default Navbar;
