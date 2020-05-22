@@ -6,7 +6,9 @@ import {
   Route,
 } from "react-router-dom";
 
-import Navbar from "./Navbar";
+import Board from "./components/Board";
+import Home from "./components/Home";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
@@ -18,44 +20,10 @@ const App = () => {
           <Board squares={DEFAULT_BOARD}/>
         </Route>
         <Route path="/">
-          <></>
+          <Home/>
         </Route>
       </Switch>
     </Router>
-  );
-};
-
-const Board = (props) => {
-  var cols = [];
-  var rows = [];
-  var boardArray = props.squares;
-
-  for (var i = 0; i <= 7; i++) {
-    cols = [];
-    for (var j = 0; j <=7; j++) {
-      var thisSquare = boardArray[j + 8*i]
-      cols.push(
-        <Square
-          color={thisSquare.color}
-          piece={thisSquare.piece}
-        />
-      );
-    }
-    rows.push(<div>{cols}</div>);
-  }
-  return (
-    <span class="thick">
-      {rows}
-    </span>
-  );
-};
-
-const Square = (props) => {
-  var piece = props.piece.charAt(0);
-  return (
-    <button type="button" id={props.color}>
-      {piece}
-    </button>
   );
 };
 
