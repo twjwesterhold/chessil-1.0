@@ -1,9 +1,27 @@
 import React from 'react';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+
+import Navbar from "./Navbar";
 
 const App = () => {
   return (
-    <Board squares={DEFAULT_BOARD} />
+    <Router>
+      <Navbar/>
+
+      <Switch>
+        <Route path="/board">
+          <Board squares={DEFAULT_BOARD}/>
+        </Route>
+        <Route path="/">
+          <></>
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 
@@ -84,7 +102,7 @@ const DEFAULT_BOARD = [
   {square: 'a8', piece: "rook-black", color: "whiteS"}, {square: 'b8', piece: "knight-black", color: "blackS"},
   {square: 'c8', piece: "bishop-black", color: "whiteS"}, {square: 'd8', piece: "queen-black", color: "blackS"},
   {square: 'e8', piece: "king-black", color: "whiteS"}, {square: 'f8', piece: "bishop-black", color: "blackS"},
-  {square: 'g8', piece: "knight-black", color: "whiteS"}, {square: 'h8', piece: "rook-black", color: "blackS"}, 
+  {square: 'g8', piece: "knight-black", color: "whiteS"}, {square: 'h8', piece: "rook-black", color: "blackS"},
 
   {square: 'a7', piece: "pawn-black", color: "blackS"}, {square: 'b7', piece: "pawn-black", color: "whiteS"},
   {square: 'c7', piece: "pawn-black", color: "blackS"}, {square: 'd7', piece: "pawn-black", color: "whiteS"},
