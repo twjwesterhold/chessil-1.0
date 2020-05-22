@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <Board squares={DEFAULT_BOARD}/>
+    <Board squares={DEFAULT_BOARD} />
   );
-}
+};
 
-function Board(props) {
+const Board = (props) => {
   var cols = [];
   var rows = [];
   var boardArray = props.squares;
@@ -26,20 +26,59 @@ function Board(props) {
     rows.push(<div>{cols}</div>);
   }
   return (
-    <div>
+    <span class="thick">
       {rows}
-    </div>
+    </span>
   );
-}
+};
 
-function Square(props) {
+const Square = (props) => {
   var piece = props.piece.charAt(0);
   return (
     <button type="button" id={props.color}>
       {piece}
     </button>
   );
-}
+};
+
+const isValidFen = (fen) => {
+  // fen must be a string
+  if (typeof fen !== 'string') {
+    return false;
+  }
+
+  // cut off move and castling data
+  var fenTest = fen.split(' ', 1)[0];
+  // expand whitespace
+  fenTest = expandFenEmptySquares(fenTest);
+
+  // separate into chunks
+  var ranks = fenTest.split('/');
+
+  // check that each row has data for 8 squares
+  if (ranks.length !== 8) {
+    return false;
+  }
+
+  for (var i = 0; i <= 8; i--) {
+    if (ranks[i].length !== 8 ||
+        ranks[i].search(/[^kqrnbp1]/i) !== -1) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+const expandFenEmptySquares = (fen) => {
+  return fen.replace(/2/g,'11')
+    .replace(/3/g,'111')
+    .replace(/4/g,'1111')
+    .replace(/5/g,'11111')
+    .replace(/6/g,'111111')
+    .replace(/7/g,'1111111')
+    .replace(/8/g,'11111111')
+};
 
 const DEFAULT_BOARD = [
   {square: 'a8', piece: "rook-black", color: "whiteS"}, {square: 'b8', piece: "knight-black", color: "blackS"},
