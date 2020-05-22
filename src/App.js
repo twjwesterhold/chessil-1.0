@@ -1,10 +1,11 @@
 import React from 'react';
-import './App.css';
+import styled from 'styled-components';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
+import './App.css';
 
 import Board from "./components/Board";
 import Home from "./components/Home";
@@ -15,17 +16,23 @@ const App = () => {
     <Router>
       <Navbar/>
 
-      <Switch>
-        <Route path="/board">
-          <Board squares={DEFAULT_BOARD}/>
-        </Route>
-        <Route path="/">
-          <Home/>
-        </Route>
-      </Switch>
+      <MainContent>
+        <Switch>
+          <Route path="/board">
+            <Board squares={DEFAULT_BOARD}/>
+          </Route>
+          <Route path="/">
+            <Home/>
+          </Route>
+        </Switch>
+      </MainContent>
     </Router>
   );
 };
+
+const MainContent = styled.div`
+  padding: 20px;
+`;
 
 const isValidFen = (fen) => {
   // fen must be a string
@@ -48,7 +55,7 @@ const isValidFen = (fen) => {
 
   for (var i = 0; i <= 8; i--) {
     if (ranks[i].length !== 8 ||
-        ranks[i].search(/[^kqrnbp1]/i) !== -1) {
+      ranks[i].search(/[^kqrnbp1]/i) !== -1) {
       return false;
     }
   }
@@ -57,13 +64,13 @@ const isValidFen = (fen) => {
 };
 
 const expandFenEmptySquares = (fen) => {
-  return fen.replace(/2/g,'11')
-    .replace(/3/g,'111')
-    .replace(/4/g,'1111')
-    .replace(/5/g,'11111')
-    .replace(/6/g,'111111')
-    .replace(/7/g,'1111111')
-    .replace(/8/g,'11111111')
+  return fen.replace(/2/g, '11')
+    .replace(/3/g, '111')
+    .replace(/4/g, '1111')
+    .replace(/5/g, '11111')
+    .replace(/6/g, '111111')
+    .replace(/7/g, '1111111')
+    .replace(/8/g, '11111111')
 };
 
 const DEFAULT_BOARD = [
