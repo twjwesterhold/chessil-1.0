@@ -7,45 +7,26 @@ import {
 } from "react-router-dom";
 import './App.css';
 
+// component important
+import Navbar from "./components/Navbar";
+import Board from "./components/Board";
+import Home from "./components/Home";
+
 const App = () => {
   return (
     <Router>
-    <Board squares={DEFAULT_BOARD} />
-    <Router />
-  );
-};
-
-const Board = (props) => {
-  var cols = [];
-  var rows = [];
-  var boardArray = props.squares;
-
-  for (var i = 0; i <= 7; i++) {
-    cols = [];
-    for (var j = 0; j <=7; j++) {
-      var thisSquare = boardArray[j + 8*i]
-      cols.push(
-        <Square
-          color={thisSquare.color}
-          piece={thisSquare.piece}
-        />
-      );
-    }
-    rows.push(<div>{cols}</div>);
-  }
-  return (
-    <span class="thick">
-      {rows}
-    </span>
-  );
-};
-
-const Square = (props) => {
-  var piece = props.piece.charAt(0);
-  return (
-    <button type="button" id={props.color}>
-      {piece}
-    </button>
+      <Navbar/>
+      <div>
+        <Switch>
+          <Route path="/board">
+            <Board squares={DEFAULT_BOARD}/>
+          </Route>
+          <Route path="/">
+            <Home/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
@@ -79,13 +60,13 @@ const isValidFen = (fen) => {
 };
 
 const expandFenEmptySquares = (fen) => {
-  return fen.replace(/2/g,'11')
-    .replace(/3/g,'111')
-    .replace(/4/g,'1111')
-    .replace(/5/g,'11111')
-    .replace(/6/g,'111111')
-    .replace(/7/g,'1111111')
-    .replace(/8/g,'11111111')
+  return fen.replace(/2/g, '11')
+    .replace(/3/g, '111')
+    .replace(/4/g, '1111')
+    .replace(/5/g, '11111')
+    .replace(/6/g, '111111')
+    .replace(/7/g, '1111111')
+    .replace(/8/g, '11111111')
 };
 
 const DEFAULT_BOARD = [
