@@ -49,6 +49,7 @@ const Navlink = styled(Link)`
 	padding-right: 4px;
 	padding-top: 2px;
 	padding-bottom: 2px;
+	background-color: #b0e6ff;
 `;
 
 export default Fenbar;

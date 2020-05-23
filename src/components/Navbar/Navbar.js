@@ -22,11 +22,12 @@ const NavbarContainer = styled.div`
 `;
 
 const StyledLink = styled(NavLink)`
-	margin-left: 75px;
+	margin-left: 65px;
+	font-size: 20px;
 	text-decoration: none;
 	color: white;
 	&.active {
-		color: #80C0E0;
+		color: #b0e6ff;
 		border-bottom: solid white 2px;
 		padding-bottom: 5px;
 	}
