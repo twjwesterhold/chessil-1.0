@@ -1,49 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
+import queryString from "query-string";
 
 import Square from "../Square";
-import { fenToObject }  from "../../fenUtils.js"
+import { getBoardFromFen }  from "../../fenUtils.js";
 
-const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+const DEFAULT_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
 
-const Board = (props) => {
+const Board = ({ location }) => {
+	const fen = (queryString.parse(location.search).fen || DEFAULT_FEN).replace(/_/g, " ");
 
-  var fenStr;
-  if (props.location.state === null) {
-    fenStr = START_FEN;
-  } else {
-    fenStr = props.location.state.userFen;
-  }
+	const boardArray = getBoardFromFen(fen);
 
-  var cols = [];
-  var rows = [];
+	const rows = [];
+	for (let i = 0; i <= 7; i++) {
+		const cols = [];
+		for (let j = 0; j <=7; j++) {
+			const thisSquare = boardArray[j + 8*i];
+			cols.push(
+				<Square
+					color={thisSquare.squareColor}
+					piece={thisSquare.piece}
+				/>
+			);
+		}
+		rows.push(<ChessRow>{cols}</ChessRow>);
+	}
 
-  const boardArray = fenToObject(fenStr);
-
-  for (var i = 0; i <= 7; i++) {
-    for (var j = 0; j <=7; j++) {
-      var thisSquare = boardArray[j + 8*i];
-      cols.push(
-        <Square
-          color={thisSquare.squareColor}
-          piece={thisSquare.piece}
-        />
-      );
-    }
-    rows.push(<ChessRow>{cols}</ChessRow>);
-    cols = [];
-  }
-  return (
-    
-    <div>
-      {rows}
-    </div>
-  );
+	return (
+		<div>
+			{rows}
+		</div>
+	);
 };
 
 const ChessRow = styled.pre`
-  margin: 0px;
+  margin: 0;
 `;
 
-export default withRouter(Board);
+export default Board;
