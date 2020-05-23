@@ -1,64 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 
 import { isValidFen } from "../../fenUtils.js";
 import { Colors } from "../../styles/colors.js";
 
-class Fenbar extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {value: ''};
+const Fenbar = () => {
+	const [fen, setFen] = useState("");
+	const [toBoard, setToBoard] = useState(false);
 
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	handleChange(event) {
-		this.setState({value: event.target.value})
-	}
-
-	handleSubmit(event) {
-		if (!isValidFen(this.state.value)) {
-			alert(this.state.value + " is not a valid FEN.");
-			event.preventDefault();
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		if (!isValidFen(fen)) {
+			alert(`${fen} is not a valid FEN.`);
 		} else {
-			this.setState({toBoard: true});
+			setToBoard(true);
 		}
-	}
+	};
 
-	render() {
-		if (this.state.toBoard === true) {
-			return (
-				<Redirect 
-					to={{
-						pathname: "/board",
-						state: { userFen: this.state.value }
-					}}
-				/>
-			);
-		}
-
+	if (toBoard) {
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<label>
-					Enter custom FEN:
-					<FenInputBar
-						type="text"
-						value={this.state.value}
-						onChange={this.handleChange}
-					/>
-				</label>
-				<LoadButton type="submit" value="Load" />
-			</form>
+			<Redirect 
+				to={{
+					pathname: "/board",
+					search: `?fen=${fen.replace(/ /g, "_")}`,
+				}}
+			/>
 		);
 	}
+	return (
+		<form onSubmit={handleSubmit}>
+			<label>
+				Enter custom FEN:
+				<FenInputBar
+					type="text"
+					value={fen}
+					onChange={(event) => setFen(event.target.value)}
+				/>
+			</label>
+			<LoadButton type="submit" value="Load" />
+		</form>
+	);
 };
 
 const FenInputBar = styled.input`
 	padding: 5px;
-	margin-left: 15px;
-	margin-right: 15px;
+	margin: 10px 15px;
 	width: 350px;
 	font-size: 14px;
 `;
@@ -67,7 +54,7 @@ const LoadButton = styled.input`
 	background-image: linear-gradient(to bottom right, ${Colors.PattensBlue}, ${Colors.LilyWhite});
 	border-radius: 2px 7px;
 	font-size: 14px;
-	border: 1px solid timberwolf;
+	border: 1px solid gray;
 	outline: none;
 	&.hover {
 		background-image: linear-gradient(to bottom right, white, black);

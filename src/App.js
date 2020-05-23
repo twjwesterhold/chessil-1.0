@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
+	BrowserRouter as Router,
+	Switch,
+	Route,
 } from "react-router-dom";
-import './App.css';
+import "./App.css";
 
 // component important
 import Navbar from "./components/Navbar";
@@ -15,17 +15,17 @@ import Home from "./components/Home";
 export const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
 
 const App = () => {
-  return (
-    <Router>
-      <Navbar/>
-      <BodyContent>
-        <Switch>
-          <Route path="/board" component={Board} />
-          <Route path="/" component={Home} />
-        </Switch>
-      </BodyContent>
-    </Router>
-  );
+	return (
+		<Router>
+			<Navbar/>
+			<BodyContent>
+				<Switch>
+					<Route path="/board" component={Board} />
+					<Route path="/" component={Home} />
+				</Switch>
+			</BodyContent>
+		</Router>
+	);
 };
 
 const BodyContent = styled.div`

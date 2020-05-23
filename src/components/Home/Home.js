@@ -12,7 +12,7 @@ const Home = () => {
 			</TitleFont>
 			<Fenbar/>
 			<Defaults>
-				Starting Postion
+				Starting Position
 			</Defaults>
 			<Defaults>
 				Empty Board
@@ -32,8 +32,9 @@ const Defaults = styled.button`
 	margin-right: 15px;
 	border-radius: 2px 7px;
 	font-size: 14px;
-	border: 1px solid timberwolf;
+	border: 1px solid gray;
 	outline: none;
+	cursor: pointer;
 `;
 
 export default Home;

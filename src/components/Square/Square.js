@@ -3,12 +3,12 @@ import React from "react";
 import styled from "styled-components";
 
 const Square = (props) => {
-  var piece = props.piece.charAt(0);
-  return (
-    <ChessSquare id={props.color}>
-      {piece}
-    </ChessSquare>
-  );
+	var piece = props.piece.charAt(0);
+	return (
+		<ChessSquare id={props.color}>
+			{piece}
+		</ChessSquare>
+	);
 };
 
 const ChessSquare = styled.button`
