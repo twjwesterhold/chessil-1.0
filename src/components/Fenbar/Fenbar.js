@@ -18,7 +18,7 @@ const Fenbar = () => {
 				<Navlink to="/board">LOAD</Navlink>
 			</div>
 			{/*<Route path="/board">
-				<Board squares={document.getElementById("fenload").value}/>
+				<Board fen={document.getElementById("fenload").value}/>
 			</Route>*/}
 		</div>
 	);
@@ -41,12 +41,14 @@ const FenInputBar = styled.input`
 `;
 
 const Navlink = styled(Link)`
-//	text-decoration: none;
+	text-decoration: none;
 	color: black;
-	activeStyle {
-		font-weight: bold;
-		color: blue;
-	}
+	border: 1.1px black solid;
+	border-radius: 5px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 `;
 
 export default Fenbar;

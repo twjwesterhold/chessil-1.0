@@ -27,6 +27,8 @@ const StyledLink = styled(NavLink)`
 	color: white;
 	&.active {
 		color: #80C0E0;
+		border-bottom: solid white 2px;
+		padding-bottom: 5px;
 	}
 `;
 
