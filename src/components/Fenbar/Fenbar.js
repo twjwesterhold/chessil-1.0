@@ -1,17 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link, 
-} from "react-router-dom";
 import { Redirect } from "react-router";
-import Board from "../Board";
-import {
-	fenToObject,
-	isValidFen
-} from "../../utils.js";
+
+import { isValidFen } from "../../fenUtils.js";
 import { Colors } from "../../styles/colors.js";
 
 class Fenbar extends React.Component {
@@ -42,7 +33,7 @@ class Fenbar extends React.Component {
 				<Redirect 
 					to={{
 						pathname: "/board",
-						state: { fen: this.state.value }
+						state: { userFen: this.state.value }
 					}}
 				/>
 			);

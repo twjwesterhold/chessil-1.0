@@ -1,14 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 
 import Square from "../Square";
-import { fenToObject }  from "../../utils.js"
+import { fenToObject }  from "../../fenUtils.js"
+
+const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
 
 const Board = (props) => {
+
+  var fenStr;
+  if (props.location.state === null) {
+    fenStr = START_FEN;
+  } else {
+    fenStr = props.location.state.userFen;
+  }
+
   var cols = [];
   var rows = [];
-  var fenStr = props.useLocation.state.userFen;
-  //var fenStr = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+
   const boardArray = fenToObject(fenStr);
 
   for (var i = 0; i <= 7; i++) {
@@ -36,4 +46,4 @@ const ChessRow = styled.pre`
   margin: 0px;
 `;
 
-export default Board;
+export default withRouter(Board);
