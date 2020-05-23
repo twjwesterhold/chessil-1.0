@@ -12,10 +12,10 @@ const Square = (props) => {
 };
 
 const ChessSquare = styled.button`
-	width: 70px;
-	height: 70px;
-  	font-size: 20px;
-  	padding: 24.5px;
+	width: 65px;
+	height: 65px;
+  font-size: 20px;
+  outline: none;
 `;
 
 export default Square;

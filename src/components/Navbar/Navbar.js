@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
 	return (
 		<NavbarContainer>
-			<Navlink to="/">Home</Navlink>
-			<Navlink to="/board">Board Editor</Navlink>
+			<StyledLink exact to="/" >Home</StyledLink>
+			<StyledLink exact to="/board" >Board Editor</StyledLink>
 		</NavbarContainer>
 	);
 };
@@ -18,17 +18,18 @@ const NavbarContainer = styled.div`
 	horizontal-align: center;
 	height: 60px;
 	width: true;
-	background-color: #003366;
+	background-color: #002020;
 `;
 
-const Navlink = styled(Link)`
+const StyledLink = styled(NavLink)`
 	margin-left: 75px;
 	text-decoration: none;
 	color: white;
-	activeStyle {
-		font-weight: bold;
-		color: blue;
+	&.active {
+		color: #80C0E0;
 	}
 `;
+
+
 
 export default Navbar;
