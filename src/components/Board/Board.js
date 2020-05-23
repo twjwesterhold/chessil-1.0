@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import queryString from "query-string";
+import PropTypes from "prop-types";
 
 import Square from "../Square";
 import { getBoardFromFen }  from "../../fenUtils.js";
@@ -33,6 +34,13 @@ const Board = ({ location }) => {
 			{rows}
 		</div>
 	);
+};
+
+Board.propTypes = {
+	location: PropTypes.shape({
+		pathname: PropTypes.string,
+		search: PropTypes.string,
+	}),
 };
 
 const ChessRow = styled.pre`

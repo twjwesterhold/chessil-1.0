@@ -12,8 +12,6 @@ import Navbar from "./components/Navbar";
 import Board from "./components/Board";
 import Home from "./components/Home";
 
-export const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
-
 const App = () => {
 	return (
 		<Router>

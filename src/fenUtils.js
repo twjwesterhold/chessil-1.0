@@ -20,7 +20,7 @@ const isValidFen = (fen) => {
 	// check each row contains only valid FEN characters
 	for (var i = 0; i < 8; i++) {
 		if (ranks[i].length !== 8 ||
-        ranks[i].search(/[^kqrnbp1]/i) !== -1) {
+        ranks[i].search(/[^pnbrqk1]/i) !== -1) {
 			return false;
 		}
 	}

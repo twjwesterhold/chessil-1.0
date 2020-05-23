@@ -1,14 +1,19 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Square = (props) => {
-	var piece = props.piece.charAt(0);
+	var piece = props.piece;
 	return (
 		<ChessSquare id={props.color}>
 			{piece}
 		</ChessSquare>
 	);
+};
+
+Square.propTypes = {
+	piece: PropTypes.string,
+	color: PropTypes.string,
 };
 
 const ChessSquare = styled.button`
