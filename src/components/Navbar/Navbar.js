@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { Colors } from "../../styles/colors.js";
 
 const Navbar = () => {
 	return (
 		<NavbarContainer>
-			<StyledLink exact to="/" >Home</StyledLink>
-			<StyledLink exact to="/board" >Board Editor</StyledLink>
+			<StyledNavLink exact to="/" >Home</StyledNavLink>
+			<StyledNavLink exact to="/board" >Board Editor</StyledNavLink>
 		</NavbarContainer>
 	);
 };
@@ -21,13 +22,14 @@ const NavbarContainer = styled.div`
 	background-color: #002020;
 `;
 
-const StyledLink = styled(NavLink)`
+const StyledNavLink = styled(NavLink)`
 	margin-left: 65px;
 	font-size: 20px;
+	font-family: "Lucida Console", monospace;
 	text-decoration: none;
 	color: white;
 	&.active {
-		color: #b0e6ff;
+		color: ${Colors.Anakiwa};
 		border-bottom: solid white 2px;
 		padding-bottom: 5px;
 	}

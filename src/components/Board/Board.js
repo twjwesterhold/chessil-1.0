@@ -7,7 +7,9 @@ import { fenToObject }  from "../../utils.js"
 const Board = (props) => {
   var cols = [];
   var rows = [];
-  const boardArray = fenToObject(props.fen);
+  var fenStr = props.useLocation.state.userFen;
+  //var fenStr = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
+  const boardArray = fenToObject(fenStr);
 
   for (var i = 0; i <= 7; i++) {
     for (var j = 0; j <=7; j++) {

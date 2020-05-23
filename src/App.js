@@ -7,8 +7,6 @@ import {
 } from "react-router-dom";
 import './App.css';
 
-import { fenToObject } from "./utils.js";
-
 // component important
 import Navbar from "./components/Navbar";
 import Board from "./components/Board";
@@ -23,12 +21,8 @@ const App = () => {
       <Navbar/>
       <BodyContent>
         <Switch>
-          <Route path="/board">
-            <Board fen={START_FEN}/>
-          </Route>
-          <Route path="/">
-            <Home/>
-          </Route>
+          <Route path="/board" component={Board} />
+          <Route path="/" component={Home} />
         </Switch>
       </BodyContent>
     </Router>
