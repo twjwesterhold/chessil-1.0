@@ -5,7 +5,6 @@ import {
 	Switch,
 	Route,
 } from "react-router-dom";
-import "./App.css";
 
 // component important
 import Navbar from "./components/Navbar";
@@ -18,7 +17,7 @@ const App = () => {
 			<Navbar/>
 			<BodyContent>
 				<Switch>
-					<Route path="/board" component={Board} />
+					<Route path="/boardeditor" component={Board} />
 					<Route path="/" component={Home} />
 				</Switch>
 			</BodyContent>
@@ -29,5 +28,6 @@ const App = () => {
 const BodyContent = styled.div`
   padding: 30px;
 `;
+
 
 export default App;

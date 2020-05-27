@@ -7,7 +7,7 @@ const Navbar = () => {
 	return (
 		<NavbarContainer>
 			<StyledNavLink exact to="/" >Home</StyledNavLink>
-			<StyledNavLink exact to="/board" >Board Editor</StyledNavLink>
+			<StyledNavLink exact to="/boardeditor" >Board Editor</StyledNavLink>
 		</NavbarContainer>
 	);
 };

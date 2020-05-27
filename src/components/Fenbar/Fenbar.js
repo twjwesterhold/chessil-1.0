@@ -22,7 +22,7 @@ const Fenbar = () => {
 		return (
 			<Redirect 
 				to={{
-					pathname: "/board",
+					pathname: "/boardeditor",
 					search: `?fen=${fen.replace(/ /g, "_")}`,
 				}}
 			/>
