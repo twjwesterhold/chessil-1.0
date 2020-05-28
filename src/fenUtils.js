@@ -59,7 +59,7 @@ const getBoardFromFen = (fen) => {
 			position[curr].rank = i;
 			position[curr].file = j;
 			position[curr].piece = (rows[i].charAt(j) !== "1") ? rows[i].charAt(j) : " ";
-			position[curr].squareColor = ((i+j)%2 === 0) ? "whiteS" : "blackS";
+			position[curr].squareColor = ((i+j)%2 === 0) ? "whiteSquare" : "blackSquare";
 		}
 	}
 

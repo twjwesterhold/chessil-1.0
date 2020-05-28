@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { Colors } from "../../styles/colors.js";
+import { Color } from "../../styles/colors.js";
 
 const Navbar = () => {
 	return (
@@ -27,10 +27,10 @@ const StyledNavLink = styled(NavLink)`
 	font-size: 20px;
 	font-family: "Lucida Console", monospace;
 	text-decoration: none;
-	color: white;
+	color: ${Color.RockBlue};
 	&.active {
-		color: ${Colors.Anakiwa};
-		border-bottom: solid white 2px;
+		color: ${Color.Anakiwa};
+		border-bottom: solid ${Color.RockBlue} 2px;
 		padding-bottom: 5px;
 	}
 `;

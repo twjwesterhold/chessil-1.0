@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Fenbar from "../Fenbar";
-import { Colors } from "../../styles/colors.js";
+import { Color } from "../../styles/colors.js";
 
 const Home = () => {
 	return (
@@ -27,7 +27,7 @@ const TitleFont = styled.h1`
 `;
 
 const Defaults = styled.button`
-	background-image: linear-gradient(to bottom right, ${Colors.PattensBlue}, ${Colors.LilyWhite});
+	background-image: linear-gradient(to bottom right, ${Color.PattensBlue}, ${Color.LilyWhite});
 	margin-top: 20px;
 	margin-right: 15px;
 	border-radius: 2px 7px;

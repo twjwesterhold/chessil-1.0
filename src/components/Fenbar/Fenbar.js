@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 
 import { isValidFen } from "../../fenUtils.js";
-import { Colors } from "../../styles/colors.js";
+import { Color } from "../../styles/colors.js";
 
 const Fenbar = () => {
 	const [fen, setFen] = useState("");
@@ -51,7 +51,7 @@ const FenInputBar = styled.input`
 `;
 
 const LoadButton = styled.input`
-	background-image: linear-gradient(to bottom right, ${Colors.PattensBlue}, ${Colors.LilyWhite});
+	background-image: linear-gradient(to bottom right, ${Color.PattensBlue}, ${Color.LilyWhite});
 	border-radius: 2px 7px;
 	font-size: 14px;
 	border: 1px solid gray;

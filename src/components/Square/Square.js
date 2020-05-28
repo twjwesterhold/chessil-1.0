@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import { Color, Chamois, Teak } from "../../styles/colors.js";
+
 const Square = (props) => {
 	var piece = props.piece;
 	return (
@@ -21,10 +23,21 @@ const ChessSquare = styled.button`
 	height: 65px;
   font-size: 22px;
   border: 0;
-  background-color: ${(props) => (props.checker === "whiteS") ? "#F0D9B7" : "#B48866"};
+  outline: none;
+  background-color: ${(props) =>
+  	(props.checker === "whiteSquare") ? Chamois : Teak };
   text-shadow: #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
   							#000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px;
   color: #fff;
+  transition-duration: 0.2s;
+  &:hover {
+  	background-color: ${(props) =>
+  		(props.checker === "whiteSquare") ? Color.RockBlue : Color.BaliHai};
+  }
+  &:active {
+  	background-color: ${(props) =>
+  		(props.checker === "whiteSquare") ? Color.BaliHai : Color.RockBlue};
+  }
 `;
 
 export default Square;
