@@ -1,19 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import queryString from "query-string";
 import PropTypes from "prop-types";
 
 import Square from "../Square";
 import { getBoardFromFen }  from "../../fenUtils.js";
 
-const DEFAULT_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
-
-const Board = ({ location }) => {
-	const fen = (queryString.parse(location.search).fen || DEFAULT_FEN).replace(/_/g, " ");
-
-	const rows = [];
-
+const Board = ({ fen, onChange }) => {
 	const boardArray = getBoardFromFen(fen);
+	const rows = [];
 
 	for (var i = 0; i <= 7; i++) {
 		const cols = [];
@@ -21,7 +15,7 @@ const Board = ({ location }) => {
 			const thisSquare = boardArray[j + 8*i];
 			cols.push(
 				<Square
-					color={thisSquare.squareColor}
+					isWhite={thisSquare.isWhite}
 					piece={thisSquare.piece}
 				/>
 			);

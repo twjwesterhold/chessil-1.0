@@ -54,12 +54,12 @@ const getBoardFromFen = (fen) => {
 
 	for (var i = 0; i <= 7; i++) {
 		for (var j = 0; j <= 7; j++) {
-			position.push({rank: "", file: "", piece: "", squareColor: "",});
+			position.push({rank: "", file: "", piece: "", isWhite: "",});
 			var curr = j + 8*i;
 			position[curr].rank = i;
 			position[curr].file = j;
 			position[curr].piece = (rows[i].charAt(j) !== "1") ? rows[i].charAt(j) : " ";
-			position[curr].squareColor = ((i+j)%2 === 0) ? "whiteSquare" : "blackSquare";
+			position[curr].isWhite = ((i+j)%2 === 0) ? true : false;
 		}
 	}
 

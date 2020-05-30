@@ -5,17 +5,17 @@ import styled from "styled-components";
 import { Color, Chamois, Teak } from "../../styles/colors.js";
 
 const Square = (props) => {
-	var piece = props.piece;
+	const piece = props.piece;
 	return (
-		<ChessSquare checker={props.color}>
-				{piece}
+		<ChessSquare isWhite={props.isWhite}>
+			{piece}
 		</ChessSquare>
 	);
 };
 
 Square.propTypes = {
 	piece: PropTypes.string,
-	color: PropTypes.string,
+	isWhite: PropTypes.bool,
 };
 
 const ChessSquare = styled.button`
@@ -24,19 +24,18 @@ const ChessSquare = styled.button`
   font-size: 22px;
   border: 0;
   outline: none;
-  background-color: ${(props) =>
-  	(props.checker === "whiteSquare") ? Chamois : Teak };
+  background-color: ${(props) => (props.isWhite) ? Chamois : Teak };
   text-shadow: #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
   							#000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px;
   color: #fff;
   transition-duration: 0.2s;
   &:hover {
-  	background-color: ${(props) =>
-  		(props.checker === "whiteSquare") ? Color.RockBlue : Color.BaliHai};
+  	background-color: ${(props) => (props.isWhite) ? Color.RockBlue : Color.BaliHai};
+  	border: 4px solid ${(props) => (props.isWhite) ? Color.BaliHai : Color.RockBlue};
   }
   &:active {
-  	background-color: ${(props) =>
-  		(props.checker === "whiteSquare") ? Color.BaliHai : Color.RockBlue};
+  	background-color: ${(props) => (props.isWhite) ? Color.BaliHai : Color.RockBlue};
+  	border: 4px solid ${(props) => (props.isWhite) ? Color.RockBlue : Color.BaliHai};
   }
 `;
 

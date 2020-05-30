@@ -8,7 +8,7 @@ import {
 
 // component important
 import Navbar from "./components/Navbar";
-import Board from "./components/Board";
+import BoardEditor from "./components/BoardEditor";
 import Home from "./components/Home";
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
 			<Navbar/>
 			<BodyContent>
 				<Switch>
-					<Route path="/boardeditor" component={Board} />
+					<Route path="/boardeditor" component={BoardEditor} />
 					<Route path="/" component={Home} />
 				</Switch>
 			</BodyContent>
